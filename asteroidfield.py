@@ -4,6 +4,7 @@ from collections.abc import Callable
 import pygame
 from asteroid import Asteroid
 from constants import *
+from logger import log_event
 
 Edge = tuple[pygame.Vector2, Callable[[float], pygame.Vector2]]
 
@@ -57,3 +58,11 @@ class AsteroidField(pygame.sprite.Sprite):
             position = edge[1](random.uniform(0, 1))
             kind = random.randint(1, ASTEROID_KINDS)
             self.spawn(ASTEROID_MIN_RADIUS * kind, position, velocity)
+
+    def split(self) -> None:
+        self.kill()
+
+        if self.radius <= ASTEROID_MIN_RADIUS:
+            return
+
+        log_event("asteroid_split")
