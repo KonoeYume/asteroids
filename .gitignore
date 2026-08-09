@@ -1,0 +1,8 @@
+game_state.jsonl
+
+printf '%s\n' \
+'.venv/' \
+'__pycache__/' \
+'*.py[cod]' \
+'.env' \
+'*:Zone.Identifier' > .gitignore
